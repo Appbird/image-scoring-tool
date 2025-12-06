@@ -5,6 +5,7 @@ use eframe::{
     egui,
     egui::{Key, Modifiers, TextureHandle},
 };
+use egui::TextureOptions;
 
 use crate::image_manager::ImageManager;
 
@@ -26,8 +27,9 @@ impl ViewerApp {
 
     fn load_current(&mut self, ctx: &egui::Context) -> Result<()> {
         if let Some(t) = &mut self.texture {
-            t.set((*img).clone);
+            t.set((*self.mgr).clone, TextureOptions::default());
         }
+        Ok(())
     }
 
     fn next(&mut self, ctx: &egui::Context) {
